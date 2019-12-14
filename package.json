@@ -1,0 +1,29 @@
+{
+  "name": "order-tracking",
+  "version": "0.0.0",
+  "description": "Product tracking software to manage orders and materials along with customers",
+  "main": "server.js",
+  "scripts": {
+    "start": "node .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TrentMcGinnis/order-tracking.git"
+  },
+  "keywords": [
+    "js"
+  ],
+  "author": "Trent McGinnis",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TrentMcGinnis/order-tracking/issues"
+  },
+  "homepage": "https://github.com/TrentMcGinnis/order-tracking#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.8.1"
+  }
+}
