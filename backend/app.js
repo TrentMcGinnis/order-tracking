@@ -5,6 +5,10 @@ require('dotenv').config()
 require('./db')
 
 const CustomerRoutes = require("./Routes/CustomerRoutes");
+const ProductRoutes = require("./Routes/ProductRoutes");
+const MaterialRoutes = require("./Routes/MaterialRoutes");
+const OrderRoutes = require("./Routes/OrderRoutes");
+const UserRoutes = require("./Routes/UserRoutes");
 
 app.use(bodyparser.json());
 
@@ -21,5 +25,9 @@ app.use((req, res, next) => {
 });
 
 app.use("/api/customers", CustomerRoutes);
+app.use("/api/products", ProductRoutes)
+app.use("/api/orders", OrderRoutes)
+app.use("/api/materials", MaterialRoutes)
+app.use("/api/users", UserRoutes)
 
 module.exports = app;

@@ -1,0 +1,14 @@
+const jwt = require("jsonwebtoken");
+
+module.exports = (req,res,next) => {
+  try {
+    const token = req.headers.authorization;
+    const decodedToken = jwt.verify(token, process.env.TOKEN_SIGN);
+    req.userData = {email: decodedToken.email, id: decodedToken.userid};
+    next();
+  } catch (error) {
+    res.status(401).json({
+      message: "You are not authenticated."
+    })
+  }
+};
