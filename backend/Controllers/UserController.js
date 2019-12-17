@@ -86,6 +86,7 @@ module.exports = {
         );
         res.status(200).json({
           token: token,
+          expiresIn: 86400,
           userID: fetchedUser._id
         });
       } else {
