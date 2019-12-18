@@ -6,6 +6,9 @@ module.exports = {
     if (!userID) {
       User.find()
         .then(users => {
+          users = users.map(user => {
+            return {first_name: user.first_name, last_name: user.last_name, email: user.email}
+          });
           callback(null, users);
         })
         .catch(e => {
@@ -14,6 +17,11 @@ module.exports = {
     } else {
       User.findById(userID)
         .then(user => {
+          user = {
+            first_name: user.first_name, 
+            last_name: user.last_name, 
+            email: user.email
+          }
           callback(null, user);
         })
         .catch(e => {
@@ -33,6 +41,11 @@ module.exports = {
             password: hash
           });
           newUser.save().then(user => {
+            user = {
+              first_name: user.first_name, 
+              last_name: user.last_name, 
+              email: user.email
+            }
             callback(null, user);
           });
         })
@@ -45,6 +58,11 @@ module.exports = {
     if (user) {
       User.findByIdAndUpdate(user.id, user)
         .then(user => {
+          user = {
+            first_name: user.first_name, 
+            last_name: user.last_name, 
+            email: user.email
+          }
           callback(null, user);
         })
         .catch(e => {
@@ -65,6 +83,11 @@ module.exports = {
     User.findOne({ email: email })
       .then(user => {
         if (user) {
+          user = {
+            first_name: user.first_name, 
+            last_name: user.last_name, 
+            email: user.email
+          }
           callback(null, user);
         } else {
           callback("User not found", null);
