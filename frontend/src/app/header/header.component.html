@@ -1,0 +1,15 @@
+<nav class="navbar sticky-top navbar-dark bg-primary">
+  <a class="navbar-brand" routerLink="/">OpenBusiness</a>
+  <span class="spacer"></span>
+  <ul>
+    <li *ngIf="!userAuthenticated">
+      <a routerLink="/login" class="badge" routerLinkActive="badge-primary">Login</a>
+    </li>
+    <li *ngIf="!userAuthenticated">
+      <a routerLink="/signup" class="badge" routerLinkActive="badge-primary">Signup</a>
+    </li>
+    <li *ngIf="userAuthenticated">
+      <button class="btn btn-outline-light" (click)="onLogout()">Logout</button>
+    </li>
+  </ul>
+</nav>

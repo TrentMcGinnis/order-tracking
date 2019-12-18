@@ -9,6 +9,8 @@ import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from 'src/interceptors/auth.interceptor';
+import { UserInfoComponent } from './auth/user-info/user-info.component';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +18,8 @@ import { AuthInterceptor } from 'src/interceptors/auth.interceptor';
     NewCustomerComponent,
     LoginComponent,
     SignupComponent,
+    UserInfoComponent,
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,
