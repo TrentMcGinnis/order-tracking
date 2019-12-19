@@ -9,7 +9,7 @@ import { Injectable } from '@angular/core';
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   private token: string;
-  private authenticated = false;
+  private authenticated;
   private tokenTimer: any;
   private userID: string;
   private authStatusListener = new Subject<boolean>();
