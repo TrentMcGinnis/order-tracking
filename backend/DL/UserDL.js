@@ -7,7 +7,7 @@ module.exports = {
       User.find()
         .then(users => {
           users = users.map(user => {
-            return {first_name: user.first_name, last_name: user.last_name, email: user.email}
+            return {_id: user._id, first_name: user.first_name, last_name: user.last_name, email: user.email}
           });
           callback(null, users);
         })
@@ -18,6 +18,7 @@ module.exports = {
       User.findById(userID)
         .then(user => {
           user = {
+            _id: user._id,
             first_name: user.first_name, 
             last_name: user.last_name, 
             email: user.email
@@ -42,6 +43,7 @@ module.exports = {
           });
           newUser.save().then(user => {
             user = {
+              _id: user._id,
               first_name: user.first_name, 
               last_name: user.last_name, 
               email: user.email
@@ -59,6 +61,7 @@ module.exports = {
       User.findByIdAndUpdate(user.id, user)
         .then(user => {
           user = {
+            _id: user._id,
             first_name: user.first_name, 
             last_name: user.last_name, 
             email: user.email
@@ -83,11 +86,6 @@ module.exports = {
     User.findOne({ email: email })
       .then(user => {
         if (user) {
-          user = {
-            first_name: user.first_name, 
-            last_name: user.last_name, 
-            email: user.email
-          }
           callback(null, user);
         } else {
           callback("User not found", null);
