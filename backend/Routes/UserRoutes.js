@@ -10,6 +10,6 @@ router.get("/:id", auth, UserController.GetUser)
 router.post("/login", UserController.LoginUser)
 router.post("", UserController.PostUser);
 router.patch("/:id", auth, UserController.PatchUser)
-router.delete("/:id", UserController.DeleteUser);
+router.delete("/:id", auth, UserController.DeleteUser);
 
 module.exports = router;

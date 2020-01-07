@@ -9,6 +9,7 @@
       <a routerLink="/signup" class="badge" routerLinkActive="badge-primary">Signup</a>
     </li>
     <li *ngIf="userAuthenticated">
+      <a routerLink="/customers/list" class="btn">Customers</a>
       <a routerLink="/account" class="btn">Account</a>
       <button class="btn btn-outline-light" (click)="onLogout()">Logout</button>
     </li>

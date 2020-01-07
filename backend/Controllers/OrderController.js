@@ -2,7 +2,7 @@ const OrderDL = require("../DL/OrderDL");
 
 module.exports = {
   GetOrder: function GetOrder(req, res, next) {
-    OrderDL.Get(req.params.id, (err, order) => {
+    OrderDL.Get(req.params.id, req.userData.id, (err, order) => {
       if (!err) {
         res.status(200).json({
           Order: order
@@ -15,7 +15,7 @@ module.exports = {
     });
   },
   GetOrders: function GetOrders(req, res, next) {
-    OrderDL.Get(undefined, (err, orders) => {
+    OrderDL.Get(undefined, req.userData.id, (err, orders) => {
       if (!err) {
         res.status(200).json({
           Orders: orders
@@ -28,6 +28,7 @@ module.exports = {
     });
   },
   PostOrder: function PostOrder(req, res, next) {
+    req.body.order.userID = req.userData.id;
     OrderDL.Post(req.body.order, (err, order) => {
       if (!err) {
         res.status(200).json({

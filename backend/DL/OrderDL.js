@@ -1,11 +1,31 @@
 const Order = require("../Models/Order");
+const CustomerDL = require("./CustomerDL");
 
 module.exports = {
-  Get: function Get(orderID, callback) {
+  Get: function Get(orderID, userID, callback) {
+    let returnOrders = [];
     if (!orderID) {
-        Order.find()
+        Order.find({ userID: userID })
         .then(orders => {
-          callback(null, orders);
+          for(let i = 0; i < orders.length; i++) {
+            CustomerDL.Get(orders[i].customerID, userID, (err, res) => {
+              if (!err) {
+                returnOrders.push({
+                  _id: orders[i]._id,
+                  products: orders[i].products,
+                  customerID: orders[i].customerID,
+                  userID: orders[i].userID,
+                  dueDate: orders[i].dueDate,
+                  amount: orders[i].amount,
+                  Customer: res,
+                  __v: orders[i].__V
+                });
+              } else {
+                throw new Error(err);
+              }
+            });
+          };
+          callback(null, returnOrders);
         })
         .catch(e => {
           callback(e.message, null);
@@ -13,6 +33,13 @@ module.exports = {
     } else {
         Order.findById(orderID)
         .then(order => {
+          CustomerDL.Get(order.customerID, userID, (err, res) => {
+            if (!err) {
+              order.Customer = res;
+            } else {
+              throw new Error(err);
+            }
+          });
           callback(null, order);
         })
         .catch(e => {
@@ -23,10 +50,11 @@ module.exports = {
   Post: function Post(order, callback) {
     if (order) {
       let newOrder = Order({
-        Customer: order.customerID,
-        Products: order.products,
+        customerID: order.customerID,
+        userID: order.userID,
+        products: order.products,
         dueDate: order.dueDate,
-        cost: order.cost
+        amount: order.amount
       });
       newOrder
         .save()

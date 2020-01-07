@@ -1,13 +1,37 @@
 <div class="col-lg-4 offset-lg-4">
-  <div class="card">
+  <div *ngIf="error" class="alert alert-warning" role="alert">
+    {{ error }}
+  </div>
+  <div class="card" *ngIf="user">
     <div class="card-header">
       <h3>OpenBusiness Account</h3>
     </div>
     <div class="card-body">
-      <p>
-        Name: {{ user.first_name }} {{ user.last_name }}<br>
-        Email: {{ user.email }}
+      <p *ngIf="!edit">
+        <b>Account ID:</b><br>
+        {{ user._id }}<br><hr>
+        <b>First Name:</b><br>
+        {{ user.first_name }}<br><hr>
+        <b>Last Name:</b><br>
+        {{ user.last_name }}<br><hr>
+        <b>Email:</b><br>
+        {{ user.email }}
       </p>
+      <form *ngIf="edit && user" [formGroup]="editForm">
+        <label for="accountID"><b>Account ID</b></label>
+        <input id="accountID" class="form-control" type="text" value="{{ user._id }}" readonly >
+        <label for="first_name"><b>First Name</b></label>
+        <input id="first_name" class="form-control" type="text" formControlName="first_name" value="{{ user.first_name }}">
+        <label for="last_name"><b>Last Name</b></label>
+        <input id="last_name" class="form-control" type="text" formControlName="last_name" value="{{ user.last_name }}">
+        <label for="email"><b>Email</b></label>
+        <input id="email" class="form-control" type="email" value="{{ user.email }}" readonly >
+      </form>
+    </div>
+    <div class="card-footer">
+      <button *ngIf="!edit" type="button" class="btn btn-outline-danger" (click)="onEdit()">Edit</button>
+      <button *ngIf="edit" type="button" class="btn btn-outline-danger" (click)="onCancel()">Cancel</button>
+      <button *ngIf="edit" type="submit" class="btn btn-outline-success" (click)="onSave()">Save</button>
     </div>
   </div>
 </div>

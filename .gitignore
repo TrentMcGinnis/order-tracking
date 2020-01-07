@@ -105,3 +105,4 @@ dist
 
 # AWS
 credentials.json
+order-tracking.pem

@@ -78,7 +78,7 @@ export class AuthService {
   }
 
   postUser(firstName: string, lastName: string, email: string, password: string ) {
-    const user: User = {_id: null, first_name: firstName, last_name: lastName, email, password};
+    const user = {_id: null, first_name: firstName, last_name: lastName, email, password};
     this.http.post('http://localhost:3000/api/users', {user: user}).subscribe(() => {
       this.router.navigate(['/login']);
     }, err => {

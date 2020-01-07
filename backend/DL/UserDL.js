@@ -58,15 +58,15 @@ module.exports = {
   },
   Patch: function Patch(user, callback) {
     if (user) {
-      User.findByIdAndUpdate(user.id, user)
-        .then(user => {
-          user = {
-            _id: user._id,
-            first_name: user.first_name, 
-            last_name: user.last_name, 
-            email: user.email
+      User.findOneAndUpdate({_id: user._id}, user, () => {})
+        .then(updatedUser => {
+          updatedUser = {
+            _id: updatedUser._id,
+            first_name: updatedUser.first_name, 
+            last_name: updatedUser.last_name, 
+            email: updatedUser.email
           }
-          callback(null, user);
+          callback(null, updatedUser);
         })
         .catch(e => {
           callback(e.message, null);

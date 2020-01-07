@@ -2,7 +2,7 @@ const CustomerDL = require("../DL/CustomerDL");
 
 module.exports = {
   GetCustomer: function GetCustomer(req, res, next) {
-    CustomerDL.Get(req.params.id, (err, customer) => {
+    CustomerDL.Get(req.params.id, req.userData.id, (err, customer) => {
       if (!err) {
         res.status(200).json({
           Customer: customer
@@ -15,10 +15,10 @@ module.exports = {
     });
   },
   GetCustomers: function GetCustomers(req, res, next) {
-    CustomerDL.Get(undefined, (err, customers) => {
+    CustomerDL.Get(undefined, req.userData.id, (err, customers) => {
       if (!err) {
         res.status(200).json({
-          Customer: customers
+          Customers: customers
         });
       } else {
         res.status(500).json({
@@ -28,6 +28,7 @@ module.exports = {
     });
   },
   PostCustomer: function PostCustomer(req, res, next) {
+    req.body.customer.userID = req.userData.id;
     CustomerDL.Post(req.body.customer, (err, customer) => {
       if (!err) {
         res.status(200).json({

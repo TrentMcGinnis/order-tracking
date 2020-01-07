@@ -1,0 +1,74 @@
+<div class="col-lg-6 mx-auto">
+  <div class="card" *ngIf="customer">
+    <div class="card-header" *ngIf="!editing">
+      <h3>{{ customer.first_name }} {{ customer.last_name }}</h3>
+    </div>
+    <div class="card-body" *ngIf="!editing">
+      <h4>
+        <b>Contact Information:</b>
+      </h4>
+      <p *ngIf="customer.email">
+        <i *ngIf="customer.contactMethod == 'email'" class="fas fa-star"></i>
+        Email: {{ customer.email }}
+      </p>
+      <p *ngIf="customer.phone">
+        <i *ngIf="customer.contactMethod == 'phone'" class="fas fa-star"></i>
+        Number: {{ customer.phone }}
+      </p>
+      <hr />
+      <h5>
+        <b>Other Information:</b>
+      </h5>
+      <p *ngIf="customer.company_name">Company: {{ customer.company_name }}</p>
+      <p *ngIf="customer.street">
+        Address: {{ customer.street }} {{ customer.city }} {{ customer.state }}
+        {{ customer.postal }}
+      </p>
+    </div>
+    <form [formGroup]="editCustomerForm">
+    <div class="card-header" *ngIf="editing">
+      <h3><input formControlName="first_name">
+      <input formControlName="last_name"></h3>
+    </div>
+    <div class="card-body" *ngIf="editing">
+        <div class="form-row">
+          <h4 class="col-lg-12">
+            <b>Contact Information:</b>
+          </h4>
+          <div class="form-group col-lg-12">
+            <i *ngIf="customer.contactMethod == 'email'" class="fas fa-star"></i>
+            <label>Email: <input formControlName="email"/></label>
+          </div>
+          <div class="form-group col-lg-12">
+            <i *ngIf="customer.contactMethod == 'phone'" class="fas fa-star"></i>
+            <label>Number: <input formControlName="number"/></label>
+          </div>
+          <hr />
+          <h5 class="col-lg-12">
+            <b>Other Information:</b>
+          </h5>
+          <div class="col-lg-12">
+            <label>Company Name: <input formControlName="company_name" /></label>
+          </div>
+          <div class="col-lg-3">
+            <label>Street: <input formControlName="street" /></label>
+          </div>
+          <div class="col-lg-3">
+            <label>City: <input formControlName="city"/></label>
+          </div>
+          <div class="col-lg-3">
+            <label>State: <input formControlName="state" /></label>
+          </div>
+          <div class="col-lg-3">
+            <label>Postal: <input formControlName="postal" /></label>
+          </div>
+        </div>
+      </div>
+    </form>
+    <div class="card-footer">
+      <button *ngIf="!editing" class="btn btn-primary" (click)="onEdit()">Edit</button>
+      <button *ngIf="editing" class="btn btn-danger" (click)="onCancel()">Cancel</button>
+      <button *ngIf="editing" class="btn btn-success" (click)="onSave()">Save</button>
+    </div>
+  </div>
+</div>

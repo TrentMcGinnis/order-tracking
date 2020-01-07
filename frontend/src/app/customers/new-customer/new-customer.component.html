@@ -1,1 +1,111 @@
-<p>new-customer works!</p>
+<div class="col-lg-6">
+  <div class="card">
+    <div class="card-header">
+      <h5 style="display: inline;">New Customer</h5>
+    </div>
+    <div class="card-body">
+      <form [formGroup]="newCustomerForm">
+        <div class="form-row">
+          <div class="form-group col-lg-3">
+            <label for="first_name" class="col-form-label">First Name:</label>
+            <input
+              type="text"
+              class="form-control"
+              id="first_name"
+              formControlName="first_name"
+            />
+          </div>
+          <div class="form-group col-lg-3">
+            <label for="last_name" class="col-form-label">Last Name:</label>
+            <input
+              type="text"
+              class="form-control"
+              id="last_name"
+              formControlName="last_name"
+            />
+          </div>
+          <div class="form-group col-lg-3">
+            <label for="email" class="col-form-label">Email:</label>
+            <input
+              type="email"
+              class="form-control"
+              id="email"
+              formControlName="email"
+            />
+          </div>
+          <div class="form-group col-lg-3">
+            <label for="phone" class="col-form-label">Phone Number:</label>
+            <input
+              type="tel"
+              class="form-control"
+              id="phone"
+              formControlName="phone"
+            />
+          </div>
+          <div class="form-group col-lg-12">
+            <label for="company_name" class="col-form-label"
+              >Company Name:</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              id="company_name"
+              formControlName="company_name"
+            />
+          </div>
+          <div class="form-group col-lg-12">
+            <label for="contactMethod" class="col-form-label"
+              >Preffered Contact Method:</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              id="contactMethod"
+              formControlName="contactMethod"
+            />
+          </div>
+          <div class="form-group col-lg-12">
+            <label for="street" class="col-form-label">Street:</label>
+            <input
+              type="text"
+              class="form-control"
+              id="street"
+              formControlName="street"
+            />
+          </div>
+          <div class="form-group col-lg-4">
+            <label for="city" class="col-form-label">City:</label>
+            <input
+              type="text"
+              class="form-control"
+              id="city"
+              formControlName="city"
+            />
+          </div>
+          <div class="form-group col-lg-4">
+            <label for="state" class="col-form-label">State:</label>
+            <input
+              type="text"
+              class="form-control"
+              id="state"
+              formControlName="state"
+            />
+          </div>
+          <div class="form-group col-lg-4">
+            <label for="postal" class="col-form-label">Postal:</label>
+            <input
+              type="text"
+              class="form-control"
+              id="postal"
+              formControlName="postal"
+            />
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="card-footer">
+      <a class="btn btn-outline-danger" routerLink="/customers/list">Cancel</a>
+      <button class="btn btn-outline-success" (click)="onSave()">Save</button>
+    </div>
+  </div>
+</div>
